@@ -7,9 +7,9 @@ This is because we only step in when particular concepts can be simplified, furt
 
 #### Units
 1. Intro to Modern AI
-2. Frontiers of Image Generation
-3. 
-4. 
-5. 
-6. 
-7. 
+2. Frontiers of Image Generation [incomplete]
+3. [in progress]
+4. [in progress]
+5. [in progress]
+6. [in progress]
+7. [in progress]
