@@ -1,0 +1,22 @@
+import os
+if not os.path.exists("content"):
+    os.mkdir("content")
+!pip install -q https://github.com/camenduru/stable-diffusion-webui-colab/releases/download/0.0.16/xformers-0.0.16+814314d.d20230118-cp38-cp38-linux_x86_64.whl
+!pip install -q --pre triton
+
+!git clone -b v1.6 https://github.com/camenduru/stable-diffusion-webui /content/stable-diffusion-webui
+!wget https://raw.githubusercontent.com/camenduru/stable-diffusion-webui-scripts/main/run_n_times.py -O /content/stable-diffusion-webui/scripts/run_n_times.py
+!git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser /content/stable-diffusion-webui/extensions/stable-diffusion-webui-images-browser
+!git clone https://github.com/camenduru/stable-diffusion-webui-huggingface /content/stable-diffusion-webui/extensions/stable-diffusion-webui-huggingface
+!git clone https://github.com/7eu7d7/DreamArtist-sd-webui-extension.git /content/stable-diffusion-webui/extensions/DreamArtist
+%cd /content/stable-diffusion-webui
+
+!wget https://huggingface.co/ckpt/anything-v4.0/resolve/main/anything-v4.0-pruned.ckpt -O /content/stable-diffusion-webui/models/Stable-diffusion/anything-v4.0-pruned.ckpt
+!wget https://huggingface.co/ckpt/anything-v4.0/resolve/main/anything-v4.5-pruned.ckpt -O /content/stable-diffusion-webui/models/Stable-diffusion/anything-v4.5-pruned.ckpt
+!wget https://huggingface.co/Lykon/DreamShaper/resolve/main/Dreamshaper_3.32_baked_vae_clip_fix.ckpt -O /content/stable-diffusion-webui/models/Stable-diffusion/Dreamshaper_3.32_baked_vae_clip_fix.ckpt
+!wget https://huggingface.co/claudfuen/photorealistic-fuen-v1/resolve/main/model.ckpt -O /content/stable-diffusion-webui/models/Stable-diffusion/photorealistic-fuen-v1.ckpt
+!wget https://huggingface.co/FredZhang7/paint-journey-v2/resolve/main/paint_journey_v2.ckpt -O /content/stable-diffusion-webui/models/Stable-diffusion/paint_journey_v2.ckpt
+!wget https://huggingface.co/FredZhang7/paint-journey-v2/resolve/main/paint_journey_v2.vae.pt -O /content/stable-diffusion-webui/models/Stable-diffusion/paint_journey_v2.vae.pt
+!wget https://huggingface.co/ckpt/anything-v4.0/resolve/main/anything-v4.0.vae.pt -O /content/stable-diffusion-webui/models/Stable-diffusion/anything-v4.0-pruned.vae.pt
+
+!sed -i -e '''/prepare_environment()/a\    os.system\(f\"""sed -i -e ''\"s/dict()))/dict())).cuda()/g\"'' /content/stable-diffusion-webui/repositories/stable-diffusion-stability-ai/ldm/util.py""")''' /content/stable-diffusion-webui/launch.py
